@@ -1,0 +1,12 @@
+name: 2018-2020_IR_Database
+title: 2018-2020_IR_Database
+username:
+account: travispritchard
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1243313
+bundleId: 2448473
+url: https://travispritchard.shinyapps.io/2018-2020_IR_Database/
+when: 1569534639.29877
+asMultiple: FALSE
+asStatic: FALSE

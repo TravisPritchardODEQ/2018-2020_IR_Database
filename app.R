@@ -7,6 +7,7 @@ library(kableExtra)
 library(shinythemes)
 library(shinyWidgets)
 
+
 # Needed data files
 # assessment_display.Rdata = joined_BU_summary = ALL BASINS_categories.xlsx joined with station information from Assessment_summary.R
 # reduced_size_2018AUs.Rdata reduced sized AUs shp file
@@ -73,12 +74,12 @@ ui <- fluidPage(
                      "Select Assessment Unit",
                      choices = AU_s,
                      multiple = TRUE,
-                     options = list(maxOptions = 3000)),
+                     options = list(maxOptions = 7000)),
       selectizeInput("Select_AUName",
                      "Select AU Name",
-                     choices = sort(AU_Names),
+                     choices = AU_Names,
                      multiple = TRUE,
-                     options = list(maxOptions = 3000)),
+                     options = list(maxOptions = 7000)),
       selectizeInput("admin_basin_selector",
                      "Select Admin Basin",
                      choices = admin_basins,
@@ -109,7 +110,7 @@ ui <- fluidPage(
                              a("The 2018/2020 Assessment Methodology can be found here.", href="https://www.oregon.gov/deq/FilterDocs/ir2018assessMethod.pdf", target="_blank"), style = "font-family: 'times'"),
                            p("A more complete mapping and dataset, including water quality standards information can be found on the ", 
                              a("DEQ WQ Standards & Assessment tool.", href="https://hdcgcx2.deq.state.or.us/HVR291/?viewer=wqsa#", target="_blank"), style = "font-family: 'times'"),
-                           p("The 2018/2020 page can be found at", a("link.", href="https://www.google.com", target="_blank"), style = "font-family: 'times'"),
+                           p("The DEQ 2018/2020 IR webpage page can be found at", a("link.", href="https://www.google.com", target="_blank"), style = "font-family: 'times'"),
                            p("Raw data used in assessments can be downloaded from ", a("AWQMS.", href="https://www.oregon.gov/deq/wq/Pages/WQdata.aspx", target="_blank"),  style = "font-family: 'times'"),
                            p(strong("Use seacrh criteria on left to filter results."), style = "font-family: 'times'"),
                            p(strong("Information for each record in the assessment database includes:"), style = "font-family: 'times'"),
@@ -241,6 +242,7 @@ server <- function(input, output, session) {
   
   #render the table from the reactive table_Data 
   # Reactive function
+
   output$table <- renderDataTable(
     
     table_Data(),
