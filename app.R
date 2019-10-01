@@ -102,6 +102,7 @@ ui <- fluidPage(
                   tabPanel("Instructions",
                            value = "InstructionTab",
                            h2(strong(" Instructions to Review the 2018/2020 Integrated Report Database"), style = "font-family: 'Arial'"),
+                           p("DEQ recommends using the current version of Google Chrome or Mozilla Firefox for this application.", style = "font-family: 'times'"),
                            p("The 2018/2020 Integrated Report Assessment Database contains new assessment information and updates to assessments from 1998, 2002, 2004, 2010, and 2012. (See",
                              a("2012 Integrated Report Database", href="https://www.deq.state.or.us/wq/assessment/rpt2012/search.asp", target="_blank"),"). The current assessment categorizations  
                              are described in the “IR_category” report field. The “Assessed_in_2018” report field indicates if new data evaluations or assessments were done in 2018, othewise
@@ -109,10 +110,10 @@ ui <- fluidPage(
                            p( 
                              a("The 2018/2020 Assessment Methodology can be found here.", href="https://www.oregon.gov/deq/FilterDocs/ir2018assessMethod.pdf", target="_blank"), style = "font-family: 'times'"),
                            p("A more complete mapping and dataset, including water quality standards information can be found on the ", 
-                             a("DEQ WQ Standards & Assessment tool.", href="https://hdcgcx2.deq.state.or.us/HVR291/?viewer=wqsa#", target="_blank"), style = "font-family: 'times'"),
-                           p("The DEQ 2018/2020 IR webpage page can be found at", a("link.", href="https://www.google.com", target="_blank"), style = "font-family: 'times'"),
+                             a("Interactive web map.", href="https://hdcgcx2.deq.state.or.us/HVR291/?viewer=wqsa#", target="_blank"), style = "font-family: 'times'"),
+                           p("The DEQ 2018/2020 IR webpage page can be found at", a("link.", href="https://www.oregon.gov/deq/wq/Pages/2018-Integrated-Report.aspx", target="_blank"), style = "font-family: 'times'"),
                            p("Raw data used in assessments can be downloaded from ", a("AWQMS.", href="https://www.oregon.gov/deq/wq/Pages/WQdata.aspx", target="_blank"),  style = "font-family: 'times'"),
-                           p(strong("Use seacrh criteria on left to filter results."), style = "font-family: 'times'"),
+                           p(strong("Use seacrh criteria on left to filter results. Press the filter button to see assessment results"), style = "font-family: 'times'"),
                            p(strong("Information for each record in the assessment database includes:"), style = "font-family: 'times'"),
                            tags$ul(
                              tags$li(strong("AU_ID "), " - Assessment Unit ID", style = "font-family: 'times'"), 
