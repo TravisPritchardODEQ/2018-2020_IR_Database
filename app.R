@@ -139,7 +139,7 @@ ui <- fluidPage(
                                  
                                  
                                ),
-                               tags$li(strong("Category 3B"), " - Data indicate a designated use is not supported or a water quality standard is not attained and a TMDL is needed. this category constitites the Section 303(d) list that EPA will approve or disapprove under the Clean Water Act.", style = "font-family: 'times'")
+                               tags$li(strong("Category 5"), " - Data indicate a designated use is not supported or a water quality standard is not attained and a TMDL is needed. This category constitites the Section 303(d) list that EPA will approve or disapprove under the Clean Water Act.", style = "font-family: 'times'")
                                
                              ),
                              tags$li(strong("Monitoring Locations "), " - Monitoring stations used in 2018/2020 assessment. Data from these monitoring locations can be downloaded from AWQMS, providing the raw data used in assessment.", style = "font-family: 'times'"), 
