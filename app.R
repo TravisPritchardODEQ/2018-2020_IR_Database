@@ -64,6 +64,7 @@ admin_basins <- sort(unique(joined_BU_summary$OWRD_Basin))
 ui <- navbarPage("2018/2020 Integrated Report",
   theme = shinytheme("yeti"),
   inverse = TRUE,
+  collapsible = TRUE,
   tabPanel("Assessments",
   # Application title
   titlePanel(
