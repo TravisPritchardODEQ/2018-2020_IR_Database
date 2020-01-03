@@ -108,7 +108,7 @@ pH <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/p
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-temp_year_round <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Temperature/Data_Review/Temperature_IR_data_ALLDATA.csv",
+temp_year_round <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Temperature/Data_Review/Temperature_IR_data_ALLDATA - final.csv",
                  stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   mutate(Spawn_criteria = ifelse(Spawn_type == "Spawn", 13, "" ) ) %>%
@@ -117,7 +117,7 @@ temp_year_round <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment
          wqstd_code = as.character(wqstd_code),
          Period = 'Year Round')
 
-temp_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Temperature/Data_Review/Temperature_IR_data_ALLDATA.csv",
+temp_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Temperature/Data_Review/Temperature_IR_data_ALLDATA - final.csv",
                             stringsAsFactors = FALSE) %>%
   filter(Spawn_type == 'Spawn') %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
@@ -310,7 +310,8 @@ joined_BU_summary <- all_bains_categories %>%
                                 WQstd_code == "15" ~ paste0(Char_Name, "- Aquatic Life Criteria"),
                                 WQstd_code == "16" ~ paste0(Char_Name, "- Human Health Criteria"),
                                 TRUE ~ Char_Name)) %>%
-  select(AU_ID, AU_Name, AU_Description, OWRD_Basin, Char_Name,  Assessment,IR_category, Monitoring_locations,Year_listed, Assessed_in_2018 )
+  select(AU_ID, AU_Name, AU_Description, OWRD_Basin, Char_Name,  Assessment,IR_category, Monitoring_locations,Year_listed, Assessed_in_2018 ) %>%
+  mutate(Monitoring_locations = ifelse(AU_ID == 'OR_SR_1710020608_02_105080' & is.na(Monitoring_locations), '33642-ORDEQ', Monitoring_locations ))
 
 
 save(joined_BU_summary, file = "data/assessment_display.Rdata")
@@ -319,3 +320,7 @@ save(joined_BU_summary, file = "data/assessment_display.Rdata")
 Impairment_list_import <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_Impaired_1orMoreUses.xlsx")
 
 save(Impairment_list_import, file = "data/Impairment_list_import")
+
+ write.csv(joined_BU_summary, file ="data/assessment_display.csv",
+           row.names = FALSE)
+

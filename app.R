@@ -266,62 +266,7 @@ server <- function(input, output, session) {
     })
   
   
-  # Upate AU_Name selectize input -------------------------------------------
-  
-  #Update AU_Name choices based on selects AUS
-  observe({
-    BU_filtered_names <- filter(joined_BU_summary, AU_ID %in% input$AUs )
-    filtered_Names <- BU_filtered_names$AU_Name
-    
-    if (is.null(input$AUs)){
-      filtered_Names <- joined_BU_summary$AU_Name
-    }
-    
-    
-    if(is.null(input$Select_AUName)){
-      
-      updateSelectizeInput(session,
-                           inputId = 'Select_AUName', 
-                           choices = filtered_Names)
-    }
-    
-  })
-  
-  # Upate AU selectize input -------------------------------------------
-  
-  #Update AU choices based on selected AU_Name
-  
-  observeEvent(input$Select_AUName, {
-    BU_filtered_AUIDs <- filter(joined_BU_summary, AU_Name %in% input$Select_AUName)
-    filtered_AUs <- unique(BU_filtered_AUIDs$AU_ID)
-    
-    if (is.null(input$Select_AUName)){
-      filtered_AUs <- AU_s
-    }
-    
-    
-    if (!is.null(input$AUs)){
-      updateSelectizeInput(session,
-                           inputId = 'AUs', 
-                           choices = filtered_AUs,
-                           selected = input$AUs)
-      
-      
-      
-      
-    } 
-    
-    
-    if(is.null(input$Select_AUName)){
-      updateSelectizeInput(session,
-                           inputId = 'AUs', 
-                           choices = filtered_AUs)
-      
-    }  
-    
-  })
-  
-  
+ 
   # When filter button is hit. move focus to data tab -----------------------
   
   observeEvent(input$go, {
