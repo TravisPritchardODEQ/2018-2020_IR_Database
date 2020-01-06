@@ -65,6 +65,7 @@ ui <- navbarPage("2018/2020 Integrated Report",
   theme = shinytheme("yeti"),
   inverse = TRUE,
   collapsible = TRUE,
+  
   tabPanel("Assessments",
   # Application title
   titlePanel(
@@ -228,7 +229,39 @@ tabPanel("Raw Data Download",
          ))
 
 
-,add_busy_spinner(spin = "fading-circle"))
+,add_busy_spinner(spin = "fading-circle")
+,
+
+
+
+# bootstrapPage('',
+# 
+#               tags$style(type = 'text/css', ".navbar { background-color: #71bcb4;}",
+#                        ".navbar-default .navbar-nav > .active > a",
+#                        ".navbar-default .navbar-nav > .active > a:focus",
+#                        ".navbar-default .navbar-nav > .active > a:hover {color: pink;background-color: purple;}",
+#                        ".navbar-default .navbar-nav > li > a:hover {color: black;background-color:yellow;text-decoration:underline;}",
+#                        ".navbar-default .navbar-nav > li > a[data-value='t1'] {color: red;background-color: pink;}",
+#                        ".navbar-default .navbar-nav > li > a[data-value='t2'] {color: blue;background-color: lightblue;}",
+#                        ".navbar-default .navbar-nav > li > a[data-value='t3'] {color: green;background-color: lightgreen;"
+#                          
+#               )
+
+tags$style(type = 'text/css', 
+           HTML('.navbar { background-color: #71bcb4;}
+                          .navbar-default .navbar-brand{color: black;}
+                          .tab-panel{ background-color: red; color: black}
+                          .navbar-default .navbar-nav > .active > a, 
+                           .navbar-default .navbar-nav > .active > a:focus, 
+                           .navbar-default .navbar-nav > .active > a:hover {
+                                color: black;
+                                background-color: #00907e;
+                            }')
+           
+           
+)
+            
+)
 
 
 
