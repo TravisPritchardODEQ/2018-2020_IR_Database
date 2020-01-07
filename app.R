@@ -190,7 +190,7 @@ tabPanel("Raw Data Download",
              # Show a plot of the generated distribution
              downloadButton('downloadallData', label = "Download All Assessment Data"),
              downloadButton('downloadData', label = "Download Assessment Data by Unit"),
-             selectizeInput("AUs",
+             selectizeInput("Data_AUs",
                             "Select one or more Assessment Units",
                             choices = assessed_AUs,
                             multiple = TRUE,
@@ -382,62 +382,62 @@ server <- function(input, output, session) {
   filtered_data <- reactive({
     
     filtered_bacteria_coast_contact <- bacteria_coast_contact %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     
     filtered_bacteria_fresh_contact <- bacteria_fresh_contact  %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_bacteria_Shell_harvest <- bacteria_Shell_harvest  %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_chl <- chl  %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_DO_cont_spawn <- DO_cont_spawn %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_DO_cont_yearround <- DO_cont_yearround  %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_DO_instant_spawn <- DO_instant_spawn %>%
-      filter(AU_ID %in% input$AUs) 
+      filter(AU_ID %in% input$Data_AUs) 
     
     filtered_DO_inst_yearround <- DO_inst_yearround %>%
-      filter(AU_ID %in% input$AUs) 
+      filter(AU_ID %in% input$Data_AUs) 
     
     filtered_DO_estuary_spawn <- DO_estuary_spawn %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_DO_estuary_yearround <- DO_estuary_yearround %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_pH <- pH %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_temp <- temp   %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_Tox_AL_Ammonia <-Tox_AL_Ammonia %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_Tox_AL_CU <-Tox_AL_CU %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_Tox_AL_Hardness_Metals <-Tox_AL_Hardness_Metals %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_Tox_AL_Others <- Tox_AL_Others %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_Tox_AL_Penta <- Tox_AL_Penta %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_Tox_HH <- Tox_HH %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     filtered_Tox_HH_Hg_tissue <- Tox_HH_Hg_tissue %>%
-      filter(AU_ID %in% input$AUs)
+      filter(AU_ID %in% input$Data_AUs)
     
     return(list(filtered_bacteria_coast_contact = filtered_bacteria_coast_contact,
                 filtered_bacteria_fresh_contact = filtered_bacteria_fresh_contact,
