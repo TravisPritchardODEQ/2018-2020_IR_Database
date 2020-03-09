@@ -13,40 +13,40 @@ options(scipen = 9999999)
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
 # Load assessment result data
-all_bains_categories <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+all_bains_categories <- read.xlsx("E:/Documents/IR2018/ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
 
 
 # Load in the ALLDATA files -----------------------------------------------
 
-bacteria_coast_contact <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Bacteria/Data Review/Bacteria_Coast_Contact_IR_Data_ALLDATA.csv", 
+bacteria_coast_contact <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Bacteria_Coast_Contact_IR_Data_ALLDATA.csv", 
                                    stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-bacteria_fresh_contact <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Bacteria/Data Review/Bacteria_Fresh_Contact_IR_data_ALLDATA.csv",
+bacteria_fresh_contact <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Bacteria_Fresh_Contact_IR_data_ALLDATA.csv",
                                    stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-bacteria_Shell_harvest <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Bacteria/Data Review/Bacteria_Shell_harvest_IR_data_ALLDATA.csv",
+bacteria_Shell_harvest <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Bacteria_Shell_harvest_IR_data_ALLDATA.csv",
                                    stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-chl <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/chl_a/Data_Review/Chla_IR_data_ALLDATA.csv",
+chl <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Chla_IR_data_ALLDATA.csv",
                 stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-DO_cont_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/DO/Data_Review/After internal review redo - sept 4 2019/DO_Continuous_Spawn_IR_data_ALLDATA.csv",
+DO_cont_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/DO_Continuous_Spawn_IR_data_ALLDATA.csv",
                           stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(-crit_7Mi, -crit_Min, -crit_Instant) %>%
@@ -57,7 +57,7 @@ DO_cont_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/D
          wqstd_code = as.character(wqstd_code),
          Period = 'Spawning')
 
-DO_cont_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/DO/Data_Review/After internal review redo - sept 4 2019/DO_YearRound_continuous_IR_data_ALLDATA.csv",
+DO_cont_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/DO_YearRound_continuous_IR_data_ALLDATA.csv",
                               stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
@@ -65,7 +65,7 @@ DO_cont_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessme
          wqstd_code = as.character(wqstd_code),
          Period = 'Year Round')
 
-DO_instant_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/DO/Data_Review/After internal review redo - sept 4 2019/DO_Instant_Spawn_IR_data_ALLDATA.csv",
+DO_instant_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/DO_Instant_Spawn_IR_data_ALLDATA.csv",
                              stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(-crit_7Mi, -crit_Min, -crit_Instant) %>%
@@ -76,7 +76,7 @@ DO_instant_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessmen
          wqstd_code = as.character(wqstd_code),
          Period = 'Spawning')
 
-DO_inst_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/DO/Data_Review/After internal review redo - sept 4 2019/DO_YearRound_instant_IR_data_ALLDATA.csv",
+DO_inst_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/DO_YearRound_instant_IR_data_ALLDATA.csv",
                               stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
@@ -84,7 +84,7 @@ DO_inst_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessme
          wqstd_code = as.character(wqstd_code),
          Period = 'Year Round')
 
-DO_estuary_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/DO/Data_Review/DO_estuary_instant_Spawn_IR_data_ALLDATA.csv",
+DO_estuary_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/DO_estuary_instant_Spawn_IR_data_ALLDATA.csv",
                              stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Pollu_ID, wqstd_code)%>%
@@ -92,7 +92,7 @@ DO_estuary_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessmen
          wqstd_code = as.character(wqstd_code),
          Period = 'Spawning')
 
-DO_estuary_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/DO/Data_Review/After internal review redo - sept 4 2019/DO_Estuary_Yearround_IR_data_ALLDATA.csv",
+DO_estuary_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/DO_Estuary_Yearround_IR_data_ALLDATA.csv",
                                  stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
@@ -101,14 +101,14 @@ DO_estuary_yearround <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAsses
          Period = 'Year Round')
 
 
-pH <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/pH/Data_Review/pH_IR_data_ALLDATA.csv",
+pH <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/pH_IR_data_ALLDATA.csv",
                stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-temp_year_round <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Temperature/Data_Review/Temperature_IR_data_ALLDATA - final.csv",
+temp_year_round <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Temperature_IR_data_ALLDATA.csv",
                  stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   mutate(Spawn_criteria = ifelse(Spawn_type == "Spawn", 13, "" ) ) %>%
@@ -117,7 +117,7 @@ temp_year_round <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment
          wqstd_code = as.character(wqstd_code),
          Period = 'Year Round')
 
-temp_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Temperature/Data_Review/Temperature_IR_data_ALLDATA - final.csv",
+temp_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data//Temperature_IR_data_ALLDATA.csv",
                             stringsAsFactors = FALSE) %>%
   filter(Spawn_type == 'Spawn') %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
@@ -128,28 +128,28 @@ temp_spawn <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draf
          Period = 'Spawn')
 
 
-Tox_AL_Ammonia <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_AL/Data_Review/TOX_AL_Ammonia_IR_Data_ALLDATA.csv",
+Tox_AL_Ammonia <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/TOX_AL_Ammonia_IR_Data_ALLDATA.csv",
                            stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code,Result_UID) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-Tox_AL_CU <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_AL/Data_Review/TOX_AL_Cu_IR_Data_ALLDATA.csv",
+Tox_AL_CU <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/TOX_AL_Cu_IR_Data_ALLDATA.csv",
                       stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code,Result_UID) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-Tox_AL_Hardness_Metals <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_AL/Data_Review/TOX_AL_Hardness_Metals_IR_Data_ALLDATA.csv",
+Tox_AL_Hardness_Metals <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/TOX_AL_Hardness_Metals_IR_Data_ALLDATA.csv",
                                    stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code, Result_UID) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          wqstd_code = as.character(wqstd_code))
 
-Tox_AL_Others <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_AL/Data_Review/TOX_AL_Others_IR_Data_ALLDATA.csv",
+Tox_AL_Others <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/TOX_AL_Others_IR_Data_ALLDATA.csv",
                           stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code,Result_UID) %>%
@@ -159,7 +159,7 @@ Tox_AL_Others <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/D
                               Char_Name == "DDT" ~ '50', 
                               TRUE ~ Pollu_ID ))
 
-Tox_AL_Penta <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_AL/Data_Review/TOX_AL_Pentachlorophenol_IR_data_ALLDATA.csv",
+Tox_AL_Penta <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/TOX_AL_Pentachlorophenol_IR_data_ALLDATA.csv",
                          stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code,Result_UID) %>%
@@ -190,7 +190,7 @@ tox_AL <- tox_AL_initial %>%
 
   
 
-Tox_HH_initial <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_HH/Data_Review/Tox_HH_IR_data_ALLDATA.csv",
+Tox_HH_initial <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Tox_HH_IR_data_ALLDATA.csv",
                    stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   select(AU_ID, MLocID, Char_Name, Pollu_ID, wqstd_code,Result_UID ) %>%
@@ -213,7 +213,7 @@ Tox_HH <- Tox_HH_initial %>%
   mutate(MLocID = mon_station) %>%
   select(-mon_station, -Result_UID)
 
-Tox_HH_Hg_tissue <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_HH/Data_Review/Tox_HH_hg_tissue_IR_data_ALLDATA.csv",
+Tox_HH_Hg_tissue <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Tox_HH_hg_tissue_IR_data_ALLDATA.csv",
                              stringsAsFactors = FALSE) %>%
   arrange(AU_ID, MLocID, SampleStartDate) %>%
   mutate(Pollu_ID = '109',
@@ -310,7 +310,13 @@ joined_BU_summary <- all_bains_categories %>%
                                 WQstd_code == "15" ~ paste0(Char_Name, "- Aquatic Life Criteria"),
                                 WQstd_code == "16" ~ paste0(Char_Name, "- Human Health Criteria"),
                                 TRUE ~ Char_Name)) %>%
-  select(AU_ID, AU_Name, AU_Description, OWRD_Basin, Char_Name,  Assessment,IR_category, Monitoring_locations,Year_listed, Assessed_in_2018 ) %>%
+  select(AU_ID, AU_Name, AU_Description, OWRD_Basin, Char_Name,  Assessment,IR_category, Monitoring_locations, Rationale, Year_listed, Assessed_in_2018 ) %>%
+  mutate(Rationale = ifelse(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
+                              IR_category == "Category 4"  | 
+                              IR_category == "Category 4b" |  
+                              IR_category == "Category 4C", Rationale, '' )) %>%
+  mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
+  mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', "Carried forward from previous listing", Rationale )) %>%
   mutate(Monitoring_locations = ifelse(AU_ID == 'OR_SR_1710020608_02_105080' & is.na(Monitoring_locations), '33642-ORDEQ', Monitoring_locations ))
 
 
