@@ -57,6 +57,16 @@ admin_basins <- sort(unique(joined_BU_summary$OWRD_Basin))
 status <-  c("Attains", "Insufficient", "Impaired")
 
 
+ben_uses <- c(
+  "Aesthetic Quality",
+  "Fish and Aquatic Life",
+  "Fishing",
+  "Private Domestic Water Supply",
+  "Public Domestic Water Supply",
+  "Water Contact Recreation",
+  "Boating",
+  "Livestock Watering"
+)
 # shiny ui section -------------------------------------------------------
 
 
@@ -105,8 +115,12 @@ ui <- navbarPage("2018/2020 Integrated Report",
       selectizeInput("status_selector",
                      "Select Parameter Atainment Status",
                      choices =status,
-                     multiple = TRUE)
+                     multiple = TRUE),
       
+      selectizeInput("benuse_selector",
+                     "Select Beneficial Use",
+                     choices =ben_uses,
+                     multiple = TRUE)
     ),
     
     # Show a plot of the generated distribution
@@ -328,6 +342,16 @@ server <- function(input, output, session) {
                                        TRUE ~ 'Unassessed')) %>%
         filter(param_status %in% input$status_selector) %>%
         select(-param_status)
+      
+    }
+    
+    if(!is.null(input$benuse_selector)){
+      
+      BU_pattern = paste(input$benuse_selector, collapse="|")
+      
+      t <- t %>%
+        filter(grepl(BU_pattern, Beneficial_uses))
+        
       
     }
     t <- t %>%

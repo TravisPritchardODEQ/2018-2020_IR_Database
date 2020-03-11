@@ -15,6 +15,21 @@ con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 # Load assessment result data
 all_bains_categories <- read.xlsx("E:/Documents/IR2018/ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
 
+# This table connects the Pollu_IDs and WQstrd codes to beneficial uses.
+# This is how we assign uses to assessments
+BUs <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/LU Bus.csv",
+                stringsAsFactors = FALSE) %>%
+  mutate(Pollu_ID = as.character(Pollu_ID),
+         WQstd_code = as.character(WQstd_code)) 
+
+
+BUs_group <- BUs %>%
+  group_by(WQstd_code, Pollu_ID) %>%
+  summarise(Beneficial_uses = str_c(unique(ben_use), collapse = "; "))
+
+all_bains_categories <- all_bains_categories %>%
+  left_join(BUs_group,  by = c("Pollu_ID", "WQstd_code"))
+
 
 # Load in the ALLDATA files -----------------------------------------------
 
@@ -310,7 +325,7 @@ joined_BU_summary <- all_bains_categories %>%
                                 WQstd_code == "15" ~ paste0(Char_Name, "- Aquatic Life Criteria"),
                                 WQstd_code == "16" ~ paste0(Char_Name, "- Human Health Criteria"),
                                 TRUE ~ Char_Name)) %>%
-  select(AU_ID, AU_Name, AU_Description, OWRD_Basin, Char_Name,  Assessment,IR_category, Monitoring_locations, Rationale, Year_listed, Assessed_in_2018 ) %>%
+  select(AU_ID, AU_Name, AU_Description, OWRD_Basin, Char_Name,  Assessment,IR_category, Monitoring_locations, Rationale, Year_listed, Assessed_in_2018, Beneficial_uses ) %>%
   mutate(Rationale = ifelse(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
                               IR_category == "Category 4"  | 
                               IR_category == "Category 4b" |  
