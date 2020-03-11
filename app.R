@@ -54,7 +54,7 @@ AU_Names <- sort(unique(joined_BU_summary$AU_Name[joined_BU_summary$AU_Name != "
 pollutants <- sort(unique(joined_BU_summary$Char_Name))
 
 admin_basins <- sort(unique(joined_BU_summary$OWRD_Basin))
-
+status <-  c("Attains", "Insufficient", "Impaired")
 
 
 # shiny ui section -------------------------------------------------------
@@ -94,13 +94,17 @@ ui <- navbarPage("2018/2020 Integrated Report",
                      "Select Admin Basin",
                      choices = admin_basins,
                      multiple = TRUE),
+      selectizeInput("pollutant_selector",
+                     "Select Pollutant",
+                     choices = pollutants,
+                     multiple = TRUE),
       selectizeInput("category_selector",
                      "Select IR category",
                      choices = unique(sort(joined_BU_summary$IR_category)),
                      multiple = TRUE),
-      selectizeInput("pollutant_selector",
-                     "Select Pollutant",
-                     choices = pollutants,
+      selectizeInput("status_selector",
+                     "Select Parameter Atainment Status",
+                     choices =status,
                      multiple = TRUE)
       
     ),
@@ -313,6 +317,17 @@ server <- function(input, output, session) {
     if(!is.null(input$admin_basin_selector)){
       t <- t %>%
         filter(OWRD_Basin %in% input$admin_basin_selector)
+      
+    }
+    
+    if(!is.null(input$status_selector)){
+      t <- t %>%
+       mutate(param_status = case_when(grepl('5', IR_category) | grepl('4', IR_category) ~ "Impaired",
+                                       grepl('3', IR_category) ~ "Insufficient",
+                                       grepl('2',IR_category) ~ 'Attains',
+                                       TRUE ~ 'Unassessed')) %>%
+        filter(param_status %in% input$status_selector) %>%
+        select(-param_status)
       
     }
     t <- t %>%
