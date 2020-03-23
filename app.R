@@ -113,7 +113,7 @@ ui <- navbarPage("2018/2020 Integrated Report",
                      choices = unique(sort(joined_BU_summary$IR_category)),
                      multiple = TRUE),
       selectizeInput("status_selector",
-                     "Select Parameter Atainment Status",
+                     "Select Parameter Attainment Status",
                      choices =status,
                      multiple = TRUE),
       
@@ -133,8 +133,9 @@ ui <- navbarPage("2018/2020 Integrated Report",
                            p("DEQ recommends using the current version of Google Chrome or Mozilla Firefox for this application.", style = "font-family: 'times'"),
                            p("The 2018/2020 Integrated Report Assessment Database contains new assessment information and updates to assessments from 1998, 2002, 2004, 2010, and 2012. (See",
                              a("2012 Integrated Report Database", href="https://www.deq.state.or.us/wq/assessment/rpt2012/search.asp", target="_blank"),"). The current assessment categorizations  
-                             are described in the “IR_category” report field. The “Assessed_in_2018” report field indicates if new data evaluations or assessments were done in 2018, othewise
-                             the status assigned in previous assessments was carried forward. Assessment categorized as Category 4 or category 5 (includuing all subcategories) are considered impaired.", style = "font-family: 'times'"),
+                             are described in the “IR_category” report field. The “Assessed_in_2018” report field indicates if new data evaluations or assessments were done in 2018/2020, othewise
+                             the status assigned in previous assessments was carried forward from previous reports. Assessment categorized as Category 4 or category 5 (includuing all subcategories) are considered impaired.", style = "font-family: 'times'"),
+                           p("Click on ", strong("Raw Data Download"), "in the header at the top of this page to access raw data used in 2018/2020 assessments.", style = "font-family: 'times'"),
                            p( 
                              a("The 2018/2020 Assessment Methodology can be found here.", href="https://www.oregon.gov/deq/FilterDocs/ir2018assessMethod.pdf", target="_blank"), style = "font-family: 'times'"),
                            p("A more complete mapping and dataset, including water quality standards information can be found on the ", 
@@ -478,6 +479,16 @@ server <- function(input, output, session) {
     filtered_Tox_HH_Hg_tissue <- Tox_HH_Hg_tissue %>%
       filter(AU_ID %in% input$Data_AUs)
     
+    filtered_biocriteria <- biocriteria %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
+    filtered_turbidity <- turbidity_data %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
+    filtered_weeds <- Aquatic_weeds_data %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
+    
     return(list(filtered_bacteria_coast_contact = filtered_bacteria_coast_contact,
                 filtered_bacteria_fresh_contact = filtered_bacteria_fresh_contact,
                 filtered_bacteria_Shell_harvest = filtered_bacteria_Shell_harvest, 
@@ -496,7 +507,10 @@ server <- function(input, output, session) {
                 filtered_Tox_AL_Others = filtered_Tox_AL_Others,
                 filtered_Tox_AL_Penta =filtered_Tox_AL_Penta,
                 filtered_Tox_HH = filtered_Tox_HH,
-                filtered_Tox_HH_Hg_tissue =filtered_Tox_HH_Hg_tissue))
+                filtered_Tox_HH_Hg_tissue =filtered_Tox_HH_Hg_tissue,
+                filtered_biocriteria = filtered_biocriteria,
+                filtered_turbidity = filtered_turbidity,
+                filtered_weeds = filtered_weeds))
     
   })
   
@@ -512,14 +526,15 @@ server <- function(input, output, session) {
       setwd(tempdir())
       print(tempdir())
       
-      fs <- c("temp.xlsx", "Bacteria.xlsx", "Chlorophyll.xlsx",
+      fs <- c("Temperature.xlsx", "Bacteria.xlsx", "Chlorophyll.xlsx",
               "DO.xlsx", "pH.xlsx",
               "Aquatic_Life_Toxics.xlsx", "Human_Health_Toxics.xlsx",
+              "Biocriteria.xlsx", "Turbidity.xlsx","Aquatic_Weeds.xlsx",
               "IR_Data_Dictionary.xlsx"
       )
       
       #temperature
-      write.xlsx(filtered_data()$filtered_temp, file = "temp.xlsx",
+      write.xlsx(filtered_data()$filtered_temp, file = "Temperature.xlsx",
                  overwrite = TRUE)
       
       wb <- createWorkbook()
@@ -607,6 +622,21 @@ server <- function(input, output, session) {
                    overwrite = TRUE)
       
       file.copy(paste0(original_wd, "/data/IR_Data_Dictionary.xlsx"), "IR_Data_Dictionary.xlsx")
+      
+      #biocriteria
+      write.xlsx(filtered_data()$filtered_biocriteria, 
+                 file = "Biocriteria.xlsx", 
+                 overwrite = TRUE)
+      
+      #turbidity
+      write.xlsx(filtered_data()$filtered_turbidity, 
+                 file = "Turbidity.xlsx", 
+                 overwrite = TRUE)
+      
+      #weeds
+      write.xlsx(filtered_data()$filtered_weeds, 
+                 file = "Aquatic_Weeds.xlsx", 
+                 overwrite = TRUE)
       
       print (fs)
       
