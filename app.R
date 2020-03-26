@@ -488,6 +488,9 @@ server <- function(input, output, session) {
     filtered_weeds <- Aquatic_weeds_data %>%
       filter(AU_ID %in% input$Data_AUs)
     
+    filtered_HABs <- Habs_data %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
     
     return(list(filtered_bacteria_coast_contact = filtered_bacteria_coast_contact,
                 filtered_bacteria_fresh_contact = filtered_bacteria_fresh_contact,
@@ -510,7 +513,8 @@ server <- function(input, output, session) {
                 filtered_Tox_HH_Hg_tissue =filtered_Tox_HH_Hg_tissue,
                 filtered_biocriteria = filtered_biocriteria,
                 filtered_turbidity = filtered_turbidity,
-                filtered_weeds = filtered_weeds))
+                filtered_weeds = filtered_weeds,
+                filtered_HABs = filtered_HABs))
     
   })
   
@@ -530,6 +534,7 @@ server <- function(input, output, session) {
               "DO.xlsx", "pH.xlsx",
               "Aquatic_Life_Toxics.xlsx", "Human_Health_Toxics.xlsx",
               "Biocriteria.xlsx", "Turbidity.xlsx","Aquatic_Weeds.xlsx",
+              'HABs.xlsx',
               "IR_Data_Dictionary.xlsx"
       )
       
@@ -636,6 +641,11 @@ server <- function(input, output, session) {
       #weeds
       write.xlsx(filtered_data()$filtered_weeds, 
                  file = "Aquatic_Weeds.xlsx", 
+                 overwrite = TRUE)
+      
+      #HABs
+      write.xlsx(filtered_data()$filtered_HABs, 
+                 file = "HABs.xlsx", 
                  overwrite = TRUE)
       
       print (fs)

@@ -4,6 +4,7 @@
 #' to be names All_data.zip and placed in the data folder.
 #' 
 
+library(zip)
 
 load('data/IR_data.Rdata')
 
@@ -102,16 +103,51 @@ saveWorkbook(wb, file = "Human_Health_Toxics.xlsx",
 
 # biocriteria
 write.xlsx( biocriteria, 
-            file = "biocriteria.xlsx", 
+            file = "Biocriteria.xlsx", 
             overwrite = TRUE)
 
 
 # Turbidity
 write.xlsx( turbidity_data, 
-            file = "turbidity.xlsx", 
+            file = "Turbidity.xlsx", 
             overwrite = TRUE)
 
 # Aquatic_Weeds
 write.xlsx( Aquatic_weeds_data, 
             file = "Aquatic_Weeds.xlsx", 
             overwrite = TRUE)
+
+# HABs
+write.xlsx( Habs_data, 
+            file = "HABs.xlsx", 
+            overwrite = TRUE)
+
+
+if (file.exists("data/All_data.zip")) {
+  file.remove("data/All_data.zip")
+  
+}
+
+zip::zip(zipfile = "data/All_data.zip", files = c("Temperature.xlsx",
+                                        "Bacteria.xlsx",
+                                        "Chlorophyll.xlsx",
+                                        "pH.xlsx",
+                                        "DO.xlsx",
+                                        "Aquatic_Life_Toxics.xlsx",
+                                        "Human_Health_Toxics.xlsx",
+                                        "Biocriteria.xlsx",
+                                        "Turbidity.xlsx",
+                                        "Aquatic_Weeds.xlsx",
+                                        "HABs.xlsx") )
+
+file.remove( c("Temperature.xlsx",
+               "Bacteria.xlsx",
+               "Chlorophyll.xlsx",
+               "pH.xlsx",
+               "DO.xlsx",
+               "Aquatic_Life_Toxics.xlsx",
+               "Human_Health_Toxics.xlsx",
+               "Biocriteria.xlsx",
+               "Turbidity.xlsx",
+               "Aquatic_Weeds.xlsx",
+               "HABs.xlsx"))

@@ -132,14 +132,20 @@ DBI::dbDisconnect(con)
 
 # Turbidity ---------------------------------------------------------------
 
-turbidity_data <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Turbidity.csv")
+turbidity_data <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Turbidity.csv",
+                           stringsAsFactors = FALSE)
 
 
 
 # Aquatic Weeds -----------------------------------------------------------
 
-Aquatic_weeds_data <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Aquatic_Weeds.csv")
+Aquatic_weeds_data <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/Aquatic_Weeds.csv",
+                               stringsAsFactors = FALSE)
 
+# HABs --------------------------------------------------------------------
+
+Habs_data <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Data/HABs_Data.csv",
+                      stringsAsFactors = FALSE)
 
 
 bacteria_coast_contact_basin <-  bacteria_coast_contact
@@ -154,7 +160,7 @@ bacteria_Shell_harvest_basin <-   bacteria_Shell_harvest
 
 save(bacteria_coast_contact,bacteria_fresh_contact,bacteria_Shell_harvest, chl, DO_cont_spawn, DO_cont_yearround, 
      DO_instant_spawn, DO_inst_yearround, DO_estuary_spawn,  DO_estuary_yearround, pH, temp,  Tox_AL_Ammonia,Tox_AL_CU,Tox_AL_Hardness_Metals,
-     Tox_AL_Others, Tox_AL_Penta, Tox_HH, Tox_HH_Hg_tissue, biocriteria,turbidity_data,Aquatic_weeds_data, file = "data/IR_data.Rdata" )
+     Tox_AL_Others, Tox_AL_Penta, Tox_HH, Tox_HH_Hg_tissue, biocriteria,turbidity_data,Aquatic_weeds_data,Habs_data, file = "data/IR_data.Rdata" )
 
 
 
