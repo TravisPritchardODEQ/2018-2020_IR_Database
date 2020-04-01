@@ -1,3 +1,6 @@
+rm(list=ls())
+
+
 #' This file loads the IR data from 'data/IR_data.Rdata' and creates excel
 #' files from it. The resukting excel files should be zipped up and used to
 #' create a zip file used in the database data download. This zipped file needs

@@ -1,3 +1,6 @@
+rm(list=ls())
+
+
 library(tidyverse)
 library(openxlsx)
 
@@ -310,6 +313,7 @@ data_together <- bacteria_coast_contact %>%
   bind_rows(biocriteria)
 
 data_to_join <- data_together %>%
+  mutate(Period = ifelse(Period == "Spawn", "Spawning", Period )) %>%
   select(AU_ID, MLocID,  Pollu_ID, wqstd_code, Period) %>%
   group_by(AU_ID,  Pollu_ID, wqstd_code, Period) %>%
   summarise(Monitoring_locations = str_c(unique(MLocID), collapse  = "; ")) %>%
@@ -330,10 +334,11 @@ joined_BU_summary <- all_bains_categories %>%
                               IR_category == "Category 4"  | 
                               IR_category == "Category 4b" |  
                               IR_category == "Category 4C", Rationale, '' )) %>%
-  mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
-  mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', "Carried forward from previous listing", Rationale )) %>%
-  mutate(Rationale = ifelse(Rationale == '', "Carried forward from previous listing", Rationale )) %>%
-  mutate(Monitoring_locations = ifelse(AU_ID == 'OR_SR_1710020608_02_105080' & is.na(Monitoring_locations), '33642-ORDEQ', Monitoring_locations ))
+  # mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
+  # mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', "Carried forward from previous listing", Rationale )) %>%
+  # mutate(Rationale = ifelse(Rationale == '', "Carried forward from previous listing", Rationale )) %>%
+  mutate(Monitoring_locations = ifelse(AU_ID == 'OR_SR_1710020608_02_105080' & is.na(Monitoring_locations), '33642-ORDEQ', Monitoring_locations )) %>%
+  mutate(Char_Name = ifelse(grepl("Dissolved Oxygen", Char_Name), 'Dissolved Oxygen', Char_Name ))
 
 
 save(joined_BU_summary, file = "data/assessment_display.Rdata")

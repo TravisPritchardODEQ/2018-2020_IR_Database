@@ -1,3 +1,6 @@
+rm(list=ls())
+
+
 library(tidyverse)
 library(openxlsx)
 library(DBI)

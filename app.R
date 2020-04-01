@@ -134,14 +134,14 @@ ui <- navbarPage("2018/2020 Integrated Report",
                            p("The 2018/2020 Integrated Report Assessment Database contains new assessment information and updates to assessments from 1998, 2002, 2004, 2010, and 2012. (See",
                              a("2012 Integrated Report Database", href="https://www.deq.state.or.us/wq/assessment/rpt2012/search.asp", target="_blank"),"). The current assessment categorizations  
                              are described in the “IR_category” report field. The “Assessed_in_2018” report field indicates if new data evaluations or assessments were done in 2018/2020, othewise
-                             the status assigned in previous assessments was carried forward from previous reports. Assessment categorized as Category 4 or category 5 (includuing all subcategories) are considered impaired.", style = "font-family: 'times'"),
+                             the status assigned in previous assessments was carried forward from previous reports. Assessment categorized as Category 4 or Category 5 (includuing all subcategories) are considered impaired.", style = "font-family: 'times'"),
                            p("Click on ", strong("Raw Data Download"), "in the header at the top of this page to access raw data used in 2018/2020 assessments.", style = "font-family: 'times'"),
                            p( 
                              a("The 2018/2020 Assessment Methodology can be found here.", href="https://www.oregon.gov/deq/FilterDocs/ir2018assessMethod.pdf", target="_blank"), style = "font-family: 'times'"),
                            p("A more complete mapping and dataset, including water quality standards information can be found on the ", 
-                             a("Interactive web map.", href="https://hdcgcx2.deq.state.or.us/HVR291/?viewer=wqsa#", target="_blank"), style = "font-family: 'times'"),
-                           p("The DEQ 2018/2020 IR webpage page can be found at", a("link.", href="https://www.oregon.gov/deq/wq/Pages/2018-Integrated-Report.aspx", target="_blank"), style = "font-family: 'times'"),
-                           p("Raw data used in assessments can be downloaded from ", a("AWQMS.", href="https://www.oregon.gov/deq/wq/Pages/WQdata.aspx", target="_blank"),  style = "font-family: 'times'"),
+                             a("Interactive Web Map.", href="https://hdcgcx2.deq.state.or.us/HVR291/?viewer=wqsa#", target="_blank"), style = "font-family: 'times'"),
+                           p("The DEQ 2018/2020 IR webpage page can be found", a("here.", href="https://www.oregon.gov/deq/wq/Pages/2018-Integrated-Report.aspx", target="_blank"), style = "font-family: 'times'"),
+                           p("Water quality data used in assessments can also be downloaded from ", a("AWQMS.", href="https://www.oregon.gov/deq/wq/Pages/WQdata.aspx", target="_blank"),  style = "font-family: 'times'"),
                            p(strong("Use seacrh criteria on left to filter results. Press the filter button to see assessment results"), style = "font-family: 'times'"),
                            p(strong("Information for each record in the assessment database includes:"), style = "font-family: 'times'"),
                            tags$ul(
@@ -168,12 +168,14 @@ ui <- navbarPage("2018/2020 Integrated Report",
                                  
                                  
                                ),
-                               tags$li(strong("Category 5"), " - Data indicate a designated use is not supported or a water quality standard is not attained and a TMDL is needed. This category constitites the Section 303(d) list that EPA will approve or disapprove under the Clean Water Act.", style = "font-family: 'times'")
+                               tags$li(strong("Category 5"), " - Data indicate a designated use is not supported or a water quality standard is not attained and a TMDL is needed. This category constitites the Section 303(d) list that EPA will approve or disapprove under the Clean Water Act", style = "font-family: 'times'")
                                
                              ),
                              tags$li(strong("Monitoring Locations "), " - Monitoring stations used in 2018/2020 assessment. Data from these monitoring locations can be downloaded from AWQMS, providing the raw data used in assessment.", style = "font-family: 'times'"), 
                              tags$li(strong("Year_listed "), " - If Assessment Unit is identified as impaired (Category 4 or 5), year it first appeared on the 303(d) List", style = "font-family: 'times'"), 
-                             tags$li(strong("Assessed_in_2018 "), " - Identifies if assessment was conducted in 2018", style = "font-family: 'times'")
+                             tags$li(strong("Assessed_in_2018 "), " - Identifies if assessment was conducted in 2018", style = "font-family: 'times'"),
+                             tags$li(strong("Rationale "), " - Rationale for impairment, if any", style = "font-family: 'times'"),
+                             tags$li(strong("Beneficial_uses "), " - Which benefcial uses this assessment applies to", style = "font-family: 'times'")
                            )
                            
                            
