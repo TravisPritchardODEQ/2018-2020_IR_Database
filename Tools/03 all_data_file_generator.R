@@ -12,6 +12,7 @@ library(zip)
 load('data/IR_data.Rdata')
 
 
+print("Writing Temperature")
 #temperature
 write.xlsx(temp, file = "Temperature.xlsx",
            overwrite = TRUE)
@@ -27,15 +28,19 @@ writeData(wb,"E coli",  bacteria_fresh_contact, rowNames = FALSE)
 writeData(wb,"Enterococcus", bacteria_coast_contact, rowNames = FALSE)
 writeData(wb,"Fecal Coliform", bacteria_Shell_harvest, rowNames = FALSE)
 
+
+print("Writing Bacteria.xlsx")
 saveWorkbook(wb, file = "Bacteria.xlsx", 
              overwrite = TRUE)
 
 #chl
+print("Writing Chlorophyll.xlsx")
 write.xlsx(chl, 
            file = "Chlorophyll.xlsx", 
            overwrite = TRUE)
 
 # pH
+print("Writing pH.xlsx")
 write.xlsx( pH, 
             file = "pH.xlsx", 
             overwrite = TRUE)
@@ -66,6 +71,8 @@ writeData(wb,"DO_yearround_instantaneous",DO_inst_yearround, rowNames = FALSE)
 writeData(wb,"DO_spawn_continuous",  DO_cont_spawn, rowNames = FALSE)
 writeData(wb,"DO_spawn_instantaneous", DO_instant_spawn, rowNames = FALSE)
 
+
+print("Writing DO.xlsx")
 saveWorkbook(wb, file = "DO.xlsx", 
              overwrite = TRUE)
 
@@ -84,6 +91,8 @@ writeData(wb, 'Tox_AL_CU',  Tox_AL_CU, rowNames = FALSE)
 writeData(wb, 'Tox_AL_Hardness_Metals',  Tox_AL_Hardness_Metals, rowNames = FALSE)
 writeData(wb, 'Tox_AL_Pentachlorophenol',Tox_AL_Penta, rowNames = FALSE)
 
+
+print("Writing Aquatic_Life_Toxics.xlsx")
 saveWorkbook(wb, file = "Aquatic_Life_Toxics.xlsx", 
              overwrite = TRUE)
 
@@ -98,29 +107,33 @@ writeData(wb, 'Tox_HH_Hg_Tissue',  Tox_HH_Hg_tissue, rowNames = FALSE)
 
 
 
-
+print("Writing Human_Health_Toxics.xlsx")
 saveWorkbook(wb, file = "Human_Health_Toxics.xlsx", 
              overwrite = TRUE)
 
 
 
 # biocriteria
+print("Writing Biocriteria.xlsx")
 write.xlsx( biocriteria, 
             file = "Biocriteria.xlsx", 
             overwrite = TRUE)
 
 
 # Turbidity
+print("Writing Turbidity.xlsx")
 write.xlsx( turbidity_data, 
             file = "Turbidity.xlsx", 
             overwrite = TRUE)
 
 # Aquatic_Weeds
+print("Writing Aquatic_Weeds.xlsx")
 write.xlsx( Aquatic_weeds_data, 
             file = "Aquatic_Weeds.xlsx", 
             overwrite = TRUE)
 
 # HABs
+print("Writing HABs.xlsx")
 write.xlsx( Habs_data, 
             file = "HABs.xlsx", 
             overwrite = TRUE)
@@ -131,6 +144,8 @@ if (file.exists("data/All_data.zip")) {
   
 }
 
+
+print("Zipping it up")
 zip::zip(zipfile = "data/All_data.zip", files = c("Temperature.xlsx",
                                         "Bacteria.xlsx",
                                         "Chlorophyll.xlsx",
@@ -142,7 +157,7 @@ zip::zip(zipfile = "data/All_data.zip", files = c("Temperature.xlsx",
                                         "Turbidity.xlsx",
                                         "Aquatic_Weeds.xlsx",
                                         "HABs.xlsx") )
-
+print("Removing files")
 file.remove( c("Temperature.xlsx",
                "Bacteria.xlsx",
                "Chlorophyll.xlsx",
