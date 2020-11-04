@@ -16,7 +16,7 @@ options(scipen = 9999999)
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
 # Load assessment result data
-all_bains_categories <- read.xlsx("E:/Documents/IR2018/ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+all_bains_categories <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Rollup/ALL BASINS_categories.xlsx")
 
 # This table connects the Pollu_IDs and WQstrd codes to beneficial uses.
 # This is how we assign uses to assessments
