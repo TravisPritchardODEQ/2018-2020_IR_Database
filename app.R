@@ -113,7 +113,7 @@ ui <- navbarPage("2018/2020 Integrated Report",
                      choices = unique(sort(joined_BU_summary$IR_category)),
                      multiple = TRUE),
       selectizeInput("status_selector",
-                     "Select Parameter Atainment Status",
+                     "Select Parameter Attainment Status",
                      choices =status,
                      multiple = TRUE),
       
@@ -133,25 +133,26 @@ ui <- navbarPage("2018/2020 Integrated Report",
                            p("DEQ recommends using the current version of Google Chrome or Mozilla Firefox for this application.", style = "font-family: 'times'"),
                            p("The 2018/2020 Integrated Report Assessment Database contains new assessment information and updates to assessments from 1998, 2002, 2004, 2010, and 2012. (See",
                              a("2012 Integrated Report Database", href="https://www.deq.state.or.us/wq/assessment/rpt2012/search.asp", target="_blank"),"). The current assessment categorizations  
-                             are described in the “IR_category” report field. The “Assessed_in_2018” report field indicates if new data evaluations or assessments were done in 2018, othewise
-                             the status assigned in previous assessments was carried forward. Assessment categorized as Category 4 or category 5 (includuing all subcategories) are considered impaired.", style = "font-family: 'times'"),
+                             are described in the “IR_category” report field. The “Assessed_in_2018” report field indicates if new data evaluations or assessments were done in 2018/2020, otherwise
+                             the status assigned in previous assessments was carried forward from previous reports. Assessment categorized as Category 4 or Category 5 (including all subcategories) are considered impaired.", style = "font-family: 'times'"),
+                           p("Click on ", strong("Raw Data Download"), "in the header at the top of this page to access raw data used in 2018/2020 assessments.", style = "font-family: 'times'"),
                            p( 
                              a("The 2018/2020 Assessment Methodology can be found here.", href="https://www.oregon.gov/deq/FilterDocs/ir2018assessMethod.pdf", target="_blank"), style = "font-family: 'times'"),
                            p("A more complete mapping and dataset, including water quality standards information can be found on the ", 
-                             a("Interactive web map.", href="https://hdcgcx2.deq.state.or.us/HVR291/?viewer=wqsa#", target="_blank"), style = "font-family: 'times'"),
-                           p("The DEQ 2018/2020 IR webpage page can be found at", a("link.", href="https://www.oregon.gov/deq/wq/Pages/2018-Integrated-Report.aspx", target="_blank"), style = "font-family: 'times'"),
-                           p("Raw data used in assessments can be downloaded from ", a("AWQMS.", href="https://www.oregon.gov/deq/wq/Pages/WQdata.aspx", target="_blank"),  style = "font-family: 'times'"),
-                           p(strong("Use seacrh criteria on left to filter results. Press the filter button to see assessment results"), style = "font-family: 'times'"),
+                             a("Interactive Web Map.", href="https://hdcgcx2.deq.state.or.us/HVR291/?viewer=wqsa#", target="_blank"), style = "font-family: 'times'"),
+                           p("The DEQ 2018/2020 IR webpage page can be found", a("here.", href="https://www.oregon.gov/deq/wq/Pages/2018-Integrated-Report.aspx", target="_blank"), style = "font-family: 'times'"),
+                           p("Water quality data used in assessments can also be downloaded from ", a("AWQMS.", href="https://www.oregon.gov/deq/wq/Pages/WQdata.aspx", target="_blank"),  style = "font-family: 'times'"),
+                           p(strong("Use search criteria on left to filter results. Press the filter button to see assessment results"), style = "font-family: 'times'"),
                            p(strong("Information for each record in the assessment database includes:"), style = "font-family: 'times'"),
                            tags$ul(
                              tags$li(strong("AU_ID "), " - Assessment Unit ID", style = "font-family: 'times'"), 
                              tags$li(strong("AU_Name "), " - Assessment Unit Name", style = "font-family: 'times'"), 
                              tags$li(strong("OWRD_Basin "), " - Oregon Water Resources Department Administrative Basin", style = "font-family: 'times'"), 
-                             tags$li(strong("Assessment "), " - Parameter being assessed. Includes specifc standard, if applicable", style = "font-family: 'times'"), 
+                             tags$li(strong("Assessment "), " - Parameter being assessed. Includes specific standard, if applicable", style = "font-family: 'times'"), 
                              tags$li(strong("IR_category "), " - Current Integrated Report category for that specific assessment", style = "font-family: 'times'"), 
                              tags$ul(
                                tags$li(strong("Category 2"), " - Available data and information indicate that some designated uses are supported and the water quality standard is attained", style = "font-family: 'times'"), 
-                               tags$li(strong("Category 3"), " - Insufficient dta to determine whether a designated use is supported", style = "font-family: 'times'"), 
+                               tags$li(strong("Category 3"), " - Insufficient data to determine whether a designated use is supported", style = "font-family: 'times'"), 
                                tags$ul(
                                  tags$li(strong("Category 3B"), " - This category is used when there is insufficient data to determine use support, but some data indicate  possible impairment", style = "font-family: 'times'"), 
                                  tags$li(strong("Category 3C"), " - This category is used to identify waters whose biocriteria scores differ from reference condition, but are not classified as impaired", style = "font-family: 'times'"), 
@@ -167,12 +168,14 @@ ui <- navbarPage("2018/2020 Integrated Report",
                                  
                                  
                                ),
-                               tags$li(strong("Category 5"), " - Data indicate a designated use is not supported or a water quality standard is not attained and a TMDL is needed. This category constitites the Section 303(d) list that EPA will approve or disapprove under the Clean Water Act.", style = "font-family: 'times'")
+                               tags$li(strong("Category 5"), " - Data indicate a designated use is not supported or a water quality standard is not attained and a TMDL is needed. This category constitutes the Section 303(d) list that EPA will approve or disapprove under the Clean Water Act", style = "font-family: 'times'")
                                
                              ),
                              tags$li(strong("Monitoring Locations "), " - Monitoring stations used in 2018/2020 assessment. Data from these monitoring locations can be downloaded from AWQMS, providing the raw data used in assessment.", style = "font-family: 'times'"), 
                              tags$li(strong("Year_listed "), " - If Assessment Unit is identified as impaired (Category 4 or 5), year it first appeared on the 303(d) List", style = "font-family: 'times'"), 
-                             tags$li(strong("Assessed_in_2018 "), " - Identifies if assessment was conducted in 2018", style = "font-family: 'times'")
+                             tags$li(strong("Assessed_in_2018 "), " - Identifies if assessment was conducted in 2018", style = "font-family: 'times'"),
+                             tags$li(strong("Rationale "), " - Rationale for impairment, if any", style = "font-family: 'times'"),
+                             tags$li(strong("Beneficial_uses "), " - Which beneficial uses this assessment applies to", style = "font-family: 'times'")
                            )
                            
                            
@@ -479,6 +482,19 @@ server <- function(input, output, session) {
     filtered_Tox_HH_Hg_tissue <- Tox_HH_Hg_tissue %>%
       filter(AU_ID %in% input$Data_AUs)
     
+    filtered_biocriteria <- biocriteria %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
+    filtered_turbidity <- turbidity_data %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
+    filtered_weeds <- Aquatic_weeds_data %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
+    filtered_HABs <- Habs_data %>%
+      filter(AU_ID %in% input$Data_AUs)
+    
+    
     return(list(filtered_bacteria_coast_contact = filtered_bacteria_coast_contact,
                 filtered_bacteria_fresh_contact = filtered_bacteria_fresh_contact,
                 filtered_bacteria_Shell_harvest = filtered_bacteria_Shell_harvest, 
@@ -497,7 +513,11 @@ server <- function(input, output, session) {
                 filtered_Tox_AL_Others = filtered_Tox_AL_Others,
                 filtered_Tox_AL_Penta =filtered_Tox_AL_Penta,
                 filtered_Tox_HH = filtered_Tox_HH,
-                filtered_Tox_HH_Hg_tissue =filtered_Tox_HH_Hg_tissue))
+                filtered_Tox_HH_Hg_tissue =filtered_Tox_HH_Hg_tissue,
+                filtered_biocriteria = filtered_biocriteria,
+                filtered_turbidity = filtered_turbidity,
+                filtered_weeds = filtered_weeds,
+                filtered_HABs = filtered_HABs))
     
   })
   
@@ -513,14 +533,16 @@ server <- function(input, output, session) {
       setwd(tempdir())
       print(tempdir())
       
-      fs <- c("temp.xlsx", "Bacteria.xlsx", "Chlorophyll.xlsx",
+      fs <- c("Temperature.xlsx", "Bacteria.xlsx", "Chlorophyll.xlsx",
               "DO.xlsx", "pH.xlsx",
               "Aquatic_Life_Toxics.xlsx", "Human_Health_Toxics.xlsx",
+              "Biocriteria.xlsx", "Turbidity.xlsx","Aquatic_Weeds.xlsx",
+              'HABs.xlsx',
               "IR_Data_Dictionary.xlsx"
       )
       
       #temperature
-      write.xlsx(filtered_data()$filtered_temp, file = "temp.xlsx",
+      write.xlsx(filtered_data()$filtered_temp, file = "Temperature.xlsx",
                  overwrite = TRUE)
       
       wb <- createWorkbook()
@@ -608,6 +630,26 @@ server <- function(input, output, session) {
                    overwrite = TRUE)
       
       file.copy(paste0(original_wd, "/data/IR_Data_Dictionary.xlsx"), "IR_Data_Dictionary.xlsx")
+      
+      #biocriteria
+      write.xlsx(filtered_data()$filtered_biocriteria, 
+                 file = "Biocriteria.xlsx", 
+                 overwrite = TRUE)
+      
+      #turbidity
+      write.xlsx(filtered_data()$filtered_turbidity, 
+                 file = "Turbidity.xlsx", 
+                 overwrite = TRUE)
+      
+      #weeds
+      write.xlsx(filtered_data()$filtered_weeds, 
+                 file = "Aquatic_Weeds.xlsx", 
+                 overwrite = TRUE)
+      
+      #HABs
+      write.xlsx(filtered_data()$filtered_HABs, 
+                 file = "HABs.xlsx", 
+                 overwrite = TRUE)
       
       print (fs)
       
