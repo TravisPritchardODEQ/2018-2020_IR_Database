@@ -89,7 +89,7 @@ ui <- navbarPage("2018/2020 Integrated Report",
   sidebarLayout(
     sidebarPanel(
       actionButton("go", "Filter",  icon("filter")),
-      downloadButton('downloadassessmentData', label = "Download Assessment Results"),
+     
       selectizeInput("AUs",
                      "Select Assessment Unit",
                      choices = AU_s,
@@ -179,6 +179,7 @@ ui <- navbarPage("2018/2020 Integrated Report",
                   ),
                   tabPanel("Assessments",
                            value = "Datatab",
+                           downloadButton('downloadassessmentData', label = "Download Assessment Results"),
                            dataTableOutput('table')
                   )
       )
