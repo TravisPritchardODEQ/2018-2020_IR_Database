@@ -5,8 +5,9 @@ account: travispritchard
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1243313
-bundleId: 2448473
+bundleId: 3854603
 url: https://travispritchard.shinyapps.io/2018-2020_IR_Database/
-when: 1569534639.29877
+when: 1605230382.2549
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: .gitattributes|2018-2020_Assessments_groups.xlsx|app_paramater_test.R
